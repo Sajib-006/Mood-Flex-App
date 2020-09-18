@@ -1,0 +1,50 @@
+<!-- views/index.html -->
+<html>
+  <head>
+    <title>Session Management in NodeJS using Node and Express</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var username, email, pass;
+        $("#submit").click(function () {
+          username = $("#username").val();
+          email = $("#email").val();
+          pass = $("#password").val();
+          /*
+           * Perform some validation here.
+           */
+          $.post(
+            "/login",
+            { username: username, email: email, pass: pass },
+            function (data) {
+              if (data === "done") {
+                window.location.href = "/admin";
+              }
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input
+      type="text"
+      size="40"
+      placeholder="Type User name"
+      id="username"
+    /><br />
+    <input
+      type="text"
+      size="40"
+      placeholder="Type your email"
+      id="email"
+    /><br />
+    <input
+      type="password"
+      size="40"
+      placeholder="Type your password"
+      id="password"
+    /><br />
+    <input type="button" value="Submit" id="submit" />
+  </body>
+</html>
